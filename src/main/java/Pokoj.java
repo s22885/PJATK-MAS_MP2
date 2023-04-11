@@ -6,7 +6,11 @@ public class Pokoj {
         this.pietro = pietro;
     }
 
-    public void setZajecia(Zajecia zajecia){
-        this.zajecia = zajecia;
+    public boolean setZajecia(Zajecia zajecia) {
+        if (this.zajecia == null || !this.zajecia.equals(zajecia)) {
+            this.zajecia = zajecia;
+            return true;
+        }
+        return false;
     }
 }

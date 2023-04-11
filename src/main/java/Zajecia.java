@@ -9,12 +9,19 @@ public class Zajecia {
 
     public Zajecia(String name) {
         this.name = name;
-        this.listaStudentow = new ArrayList<Student>();
+        this.listaStudentow = new ArrayList<>();
     }
-    public void setPokoj(Pokoj pokoj){
-        this.pokoj = pokoj;
+
+    public boolean setPokoj(Pokoj pokoj) {
+        if (this.pokoj == null || this.pokoj.equals(pokoj)) {
+            this.pokoj = pokoj;
+            this.pokoj.setZajecia(this);
+            return true;
+        }
+        return false;
     }
-    public void addStudent(Student student){
+
+    public void addStudent(Student student) {
         this.listaStudentow.add(student);
     }
 
