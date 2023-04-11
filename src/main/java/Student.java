@@ -2,38 +2,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-    private String imie;
-    private String nazwisko;
+    private final String imie;
+    private final String nazwisko;
 
-    private List<UczelniaStudent> listaUczelni;
+    private final List<UczelniaStudent> listaUczelni;
 
-    private List<Zajecia> listaZajec;
+    private final List<Zajecia> listaZajec;
 
     public Student(String imie, String nazwisko) {
         this.imie = imie;
         this.nazwisko = nazwisko;
 
-        this.listaZajec = new ArrayList<Zajecia>();
-        this.listaUczelni = new ArrayList<UczelniaStudent>();
+        this.listaZajec = new ArrayList<>();
+        this.listaUczelni = new ArrayList<>();
     }
 
-    public boolean addUczelnia(UczelniaStudent uczelniaStudent) {
+    public void addUczelnia(UczelniaStudent uczelniaStudent) {
         if (!listaUczelni.contains(uczelniaStudent)) {
             this.listaUczelni.add(uczelniaStudent);
-            return true;
         }
-        return false;
     }
 
-    public boolean removeUczelnia(UczelniaStudent uczelniaStudent) {
+    public void removeUczelnia(UczelniaStudent uczelniaStudent) {
         if (listaUczelni.contains(uczelniaStudent)) {
             listaUczelni.remove(uczelniaStudent);
-            return true;
         }
-        return false;
     }
 
     public void addZajecia(Zajecia zajecia) {
+        if (this.listaZajec.contains(zajecia))
+            return;
         this.listaZajec.add(zajecia);
+    }
+
+    public void removeZajecia(Zajecia zajecia) {
+        if (!this.listaZajec.contains(zajecia))
+            return;
+        this.listaZajec.remove(zajecia);
     }
 }

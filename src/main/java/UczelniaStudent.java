@@ -1,8 +1,8 @@
 public class UczelniaStudent {
     private static int itr = 0;
-    private Uczelnia uczelnia;
-    private Student student;
-    private String eska;
+    private final Uczelnia uczelnia;
+    private final Student student;
+    private final String eska;
 
     public UczelniaStudent(Uczelnia uczelnia, Student student){
         this.uczelnia=uczelnia;

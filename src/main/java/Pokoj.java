@@ -1,32 +1,27 @@
 public class Pokoj {
-    private String pietro;
+    private final String pietro;
     private Zajecia zajecia;
 
     public Pokoj(String pietro) {
         this.pietro = pietro;
     }
 
-    public boolean removeZajecia() {
+    public void removeZajecia() {
         if (zajecia != null) {
             zajecia.clearPokoj();
             clearZajecia();
-            return true;
         }
-        return false;
     }
 
-    public boolean clearZajecia() {
+    public void clearZajecia() {
         if (zajecia == null)
-            return false;
+            return;
         this.zajecia = null;
-        return true;
     }
 
-    public boolean setZajecia(Zajecia zajecia) {
+    public void setZajecia(Zajecia zajecia) {
         if (this.zajecia == null || !this.zajecia.equals(zajecia)) {
             this.zajecia = zajecia;
-            return true;
         }
-        return false;
     }
 }

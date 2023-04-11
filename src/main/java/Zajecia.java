@@ -2,53 +2,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Zajecia {
-    private List<Student> listaStudentow;
+    private final List<Student> listaStudentow;
 
     private Pokoj pokoj;
-    private String name;
+    private final String name;
 
     public Zajecia(String name) {
         this.name = name;
         this.listaStudentow = new ArrayList<>();
     }
 
-    public boolean setPokoj(Pokoj pokoj) {
+    public void setPokoj(Pokoj pokoj) {
         if (this.pokoj == null || this.pokoj.equals(pokoj)) {
             this.pokoj = pokoj;
             this.pokoj.setZajecia(this);
-            return true;
         }
-        return false;
     }
 
-    public boolean clearPokoj() {
+    public void clearPokoj() {
         if (this.pokoj == null)
-            return false;
+            return;
         this.pokoj = null;
-        return true;
     }
 
-    public boolean removePokoj() {
+    public void removePokoj() {
         if (this.pokoj != null) {
             pokoj.clearZajecia();
             clearPokoj();
-            return true;
         }
-        return false;
+
     }
 
-    public boolean addStudent(Student student) {
+    public void addStudent(Student student) {
         if (this.listaStudentow.contains(student))
-            return false;
+            return;
         this.listaStudentow.add(student);
-        return true;
+        student.addZajecia(this);
     }
 
-    public boolean removeStudent(Student student) {
+    public void removeStudent(Student student) {
         if (!this.listaStudentow.contains(student))
-            return false;
+            return;
         this.listaStudentow.remove(student);
-        return true;
+        student.removeZajecia(this);
     }
 
 }
