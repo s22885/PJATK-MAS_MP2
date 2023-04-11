@@ -9,17 +9,31 @@ public class Student {
 
     private List<Zajecia> listaZajec;
 
-    public Student(String imie,String nazwisko){
-        this.imie=imie;
-        this.nazwisko=nazwisko;
+    public Student(String imie, String nazwisko) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
 
         this.listaZajec = new ArrayList<Zajecia>();
-        this.listaUczelni= new ArrayList<UczelniaStudent>();
+        this.listaUczelni = new ArrayList<UczelniaStudent>();
     }
-    public void addUczelnia(UczelniaStudent uczelniaStudent){
-        this.listaUczelni.add(uczelniaStudent);
+
+    public boolean addUczelnia(UczelniaStudent uczelniaStudent) {
+        if (!listaUczelni.contains(uczelniaStudent)) {
+            this.listaUczelni.add(uczelniaStudent);
+            return true;
+        }
+        return false;
     }
-    public void addZajecia(Zajecia zajecia){
+
+    public boolean removeUczelnia(UczelniaStudent uczelniaStudent) {
+        if (listaUczelni.contains(uczelniaStudent)) {
+            listaUczelni.remove(uczelniaStudent);
+            return true;
+        }
+        return false;
+    }
+
+    public void addZajecia(Zajecia zajecia) {
         this.listaZajec.add(zajecia);
     }
 }

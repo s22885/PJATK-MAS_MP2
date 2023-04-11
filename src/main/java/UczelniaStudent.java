@@ -9,6 +9,14 @@ public class UczelniaStudent {
         this.student=student;
 
         itr+=1;
-        this.eska = "s"+ String.valueOf(itr);
+        this.eska = "s"+ itr;
+
+    }
+    public String getEska(){
+        return eska;
+    }
+    public void removeStudent(){
+        uczelnia.removeStudent(this);
+        student.removeUczelnia(this);
     }
 }
