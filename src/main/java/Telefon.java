@@ -16,7 +16,7 @@ public class Telefon {
     public void clearOwner(){
         if(!hasOwner())
             return;
-        pracownik.removeTelefon();
+        pracownik.removeTelefon(this);
         pracownik=null;
     }
     public void removeOwner(){

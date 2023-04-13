@@ -4,7 +4,7 @@ import java.util.List;
 public class Pracownik {
     private String imie;
     private String nazwisko;
-    private Telefon telefon;
+    private List<Telefon> telefonList = new ArrayList<>();
     private final List<Sklep> sklepList = new ArrayList<>();
 
     public Pracownik(String imie, String nazwisko) {
@@ -27,27 +27,37 @@ public class Pracownik {
     }
 
     public boolean addTelefon(Telefon telefon) {
-        if (hasTelefon())
+        if (hasTelefon(telefon))
             return false;
         if (telefon.hasOwner())
             return false;
-        this.telefon=telefon;
+        this.telefonList.add(telefon);
         telefon.addOwner(this);
         return true;
     }
 
-    public boolean hasTelefon() {
-        return telefon != null;
+    public boolean hasTelefon(Telefon telefon) {
+        return telefonList.contains(telefon);
     }
-    public void removeTelefon(){
-        if (!hasTelefon())
+
+    public void removeTelefon(Telefon telefon) {
+        if (!hasTelefon(telefon))
             return;
-        this.telefon=null;
+        this.telefonList.remove(telefon);
     }
-    public void clearTelefon(){
-        if(!hasTelefon())
+
+    public void clearTelefon(Telefon telefon) {
+        if (!hasTelefon(telefon))
             return;
-        this.telefon.removeOwner();
-        this.telefon=null;
+
+        int pos=0;
+        for (int i=0; i<telefonList.size();i++){
+            if (telefonList.get(i).equals(telefon)){
+                i=pos;
+                break;
+            }
+        }
+        telefonList.get(pos).removeOwner();
+        telefonList.remove(pos);
     }
 }
